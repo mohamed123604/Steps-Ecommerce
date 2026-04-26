@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="output.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@100..900&display=swap" rel="stylesheet">
+    <title>Steps | Streetwear Footwear</title>
+    <style>
+        * { font-family: 'Raleway', sans-serif; }
+
+
+        #mobile-menu {
+            display: none;
+        }
+        #mobile-menu.open {
+            display: flex;
+        }
+ 
+        #right-content img {
+            filter: drop-shadow(0 0 40px rgba(255,255,255,0.15));
+            transition: filter 0.4s ease, transform 0.4s ease;
+        }
+        #right-content img:hover {
+            filter: drop-shadow(0 0 70px rgba(255,255,255,0.3));
+            transform: scale(1.03) rotate(-1deg);
+        }
+
+        .nav-link {
+            position: relative;
+            padding-bottom: 2px;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0;
+            width: 0; height: 1px;
+            background: rgb(0, 0, 0);
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover::after { width: 100%; }
+
+        @media (max-width: 480px) {
+            #right-content img { width: 220px; }
+        }
+    </style>
+</head>
+<body class="overflow-x-hidden slide-in-left">
+<div id="main_bg">
+
+  
+    <nav class="w-[90%] md:w-[85%] mx-auto px-2 py-5">
+        <div class="flex items-center justify-between">
+
+            <a href="index.html" class="">
+            <div id="logo" class="font-bold text-2xl tracking-[0.6em] cursor-pointer select-none shrink-0">
+                STEPS
+            </div></a>
+
+            <!-- Desktop links -->
+            <ul class="hidden md:flex gap-6 lg:gap-8">
+                <a href="Shop.html"><li class="nav-link text-sm lg:text-base font-semibold cursor-pointer transition duration-300">Shop</li></a>
+                <a href="Contact.html"><li class="nav-link text-sm lg:text-base font-semibold cursor-pointer transition duration-300">Contact</li></a>
+            </ul>
+
+            <!-- Desktop buttons -->
+            <div class="hidden md:flex items-center gap-3">
+                <a href="Login.html" class="">
+                <i class="fa fa-user text-2xl cursor-pointer"></i></a>
+
+                <a href="Cart.html" class="">
+                <i class="fa fa-shopping-cart text-2xl cursor-pointer"></i></a>
+
+            </div>
+
+            <!-- Hamburger (mobile) -->
+            <button id="hamburger" class="md:hidden text-2xl focus:outline-none" aria-label="Toggle menu">
+                <i class="fa fa-bars"></i>
+            </button>
+        </div>
+
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="flex-col items-center gap-4 pt-6 pb-2 md:hidden">
+            <ul class="flex flex-col items-center gap-4 w-full border-t border-white/20 pt-4">
+                <a href="Shop.html"><li class="nav-link text-sm lg:text-base font-semibold cursor-pointer transition duration-300">Shop</li></a>
+
+                <a href="Contact.html"><li class="nav-link text-sm lg:text-base font-semibold cursor-pointer transition duration-300">Contact</li></a>
+            </ul>
+            <div class="flex gap-4 pt-2">
+                <i class="fa fa-user text-2xl cursor-pointer"></i>
+                <i class="fa fa-shopping-cart text-2xl cursor-pointer"></i>
+            </div>
+        </div>
+    </nav>
+
+
+    <div id="contact" class="w-[90%] md:w-[85%] mx-auto py-16">
+
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+
+    <div id="left-content" class=" p-8 md:p-10 rounded-2xl shadow-lg w-full">
+
+      <form class="w-full">
+        <h1 class="text-3xl font-bold mb-4 ">Get in Touch</h1>
+
+        <p class="text-gray-400 mb-8 text-sm md:text-base">
+          Have questions or feedback? We'd love to hear from you! Fill out the form and we’ll get back to you.
+        </p>
+
+
+        <div class="mb-4">
+          <label class="block text-sm mb-1">Name</label>
+          <input type="text"
+            class="w-full bg-gray-200 border border-transparent text-white text-sm px-4 py-3 rounded-lg focus:outline-none focus:border-lime-400 transition">
+        </div>
+
+   
+        <div class="mb-4">
+          <label class="block text-sm mb-1">Email</label>
+          <input type="email"
+            class="w-full bg-gray-200 border border-transparent text-white text-sm px-4 py-3 rounded-lg focus:outline-none focus:border-lime-400 transition">
+        </div>
+
+      
+        <div class="mb-6">
+          <label class="block text-sm mb-1">Message</label>
+          <textarea rows="4"
+            class="w-full bg-gray-200 border border-transparent text-white text-sm px-4 py-3 rounded-lg focus:outline-none focus:border-lime-400 transition"></textarea>
+        </div>
+
+     
+        <button type="submit"
+          class="w-full bg-lime-500 hover:bg-lime-600 text-black font-semibold py-3 rounded-lg transition">
+          Send Message
+        </button>
+      </form>
+
+    </div>
+
+    <div id="right-content" class="flex justify-center items-center">
+      <img src="imgs/contact-img.png"
+        alt="Sneaker"
+        class="w-72 sm:w-80 md:w-96 lg:w-[500px] max-w-full h-auto transition duration-500 hover:scale-105">
+    </div>
+
+  </div>
+
+</div>
+
+
+  <!-- ═══════════════════════════ FOOTER ═══════════════════════════ -->
+  <footer class=" mt-10">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8 pt-16 pb-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
+
+  
+      <div class="flex flex-col gap-4">
+        <span class="font-display text-4xl tracking-[0.3em] ">STEPS</span>
+        <p class="text-gray-400 text-sm leading-relaxed">Premium footwear crafted for every step of your journey. Style that moves with you.</p>
+        <div class="flex gap-4 mt-2">
+          <a href="#" class="w-9 h-9 rounded-full border border-gray-700 flex items-center justify-center text-gray-400 hover:border-white hover:text-black transition text-sm">
+            <i class="fa-brands fa-instagram"></i>
+          </a>
+          <a href="#" class="w-9 h-9 rounded-full border border-gray-700 flex items-center justify-center text-gray-400 hover:border-white hover:text-black transition text-sm">
+            <i class="fa-brands fa-tiktok"></i>
+          </a>
+          <a href="#" class="w-9 h-9 rounded-full border border-gray-700 flex items-center justify-center text-gray-400 hover:border-white hover:text-black transition text-sm">
+            <i class="fa-brands fa-x-twitter"></i>
+          </a>
+          <a href="#" class="w-9 h-9 rounded-full border border-gray-700 flex items-center justify-center text-gray-400 hover:border-white hover:text-black transition text-sm">
+            <i class="fa-brands fa-facebook-f"></i>
+          </a>
+        </div>
+      </div>
+
+      <div>
+        <h4 class="text-xs font-semibold uppercase tracking-widest text-gray-500 mb-5">Shop</h4>
+        <ul class="flex flex-col gap-3 text-sm text-gray-400">
+          <li><a href="#arrivals" class="hover:text-black transition">Men's Shoes</a></li>
+          <li><a href="#little-steps" class="hover:text-black transition">Kids' Shoes</a></li>
+          <li><a href="#arrivals" class="hover:text-black transition">New Arrivals</a></li>
+          <li><a href="" class="hover:text-black transition">Sale</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="text-xs font-semibold uppercase tracking-widest text-gray-500 mb-5">Help</h4>
+        <ul class="flex flex-col gap-3 text-sm text-gray-400">
+          <li><a href="" class="hover:text-black transition">Size Guide</a></li>
+          <li><a href="" class="hover:text-black transition">Track My Order</a></li>
+          <li><a href="" class="hover:text-black transition">Returns & Exchanges</a></li>
+          <li><a href="" class="hover:text-black transition">Shipping Info</a></li>
+          <li><a href="" class="hover:text-black transition">Contact Us</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="text-xs font-semibold uppercase tracking-widest text-gray-500 mb-5">Stay in the loop</h4>
+        <p class="text-sm text-gray-400 mb-4 leading-relaxed">Get early access to drops, exclusive deals, and style updates.</p>
+        <div class="flex gap-2">
+          <input
+            type="email"
+            placeholder="example@email.com"
+            class="flex-1 min-w-0 bg-gray-200 border border-gray-300 text-white text-sm px-4 py-2.5 rounded-lg placeholder-gray-400 focus:outline-none focus:border-lime-300 transition"
+          />
+          <button class="bg-lime-300 cursor-pointer text-black text-xs font-bold px-4 py-2.5 rounded-lg hover:bg-lime-400 transition shrink-0">
+            Join
+          </button>
+        </div>
+      </div>
+
+    </div>
+
+
+    <div class="border-t border-gray-800">
+      <div class="max-w-7xl mx-auto px-5 sm:px-8 py-5 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-gray-600">
+        <span>© 2025 STEPS. All rights reserved.</span>
+        <div class="flex gap-6">
+          <a href="" class="hover:text-gray-400 transition">Privacy Policy</a>
+          <a href="" class="hover:text-gray-400 transition">Terms of Use</a>
+          <a href="" class="hover:text-gray-400 transition">Cookie Settings</a>
+        </div>
+        <div class="flex items-center gap-2 text-gray-600">
+          <i class="fa-brands fa-cc-visa text-xl"></i>
+          <i class="fa-brands fa-cc-mastercard text-xl"></i>
+          <i class="fa-brands fa-cc-paypal text-xl"></i>
+          <i class="fa-brands fa-apple-pay text-xl"></i>
+        </div>
+      </div>
+    </div>
+  </footer>  
+
+
+
+
+<script>
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const icon = hamburger.querySelector('i');
+
+    hamburger.addEventListener('click', () => {
+        mobileMenu.classList.toggle('open');
+        icon.classList.toggle('fa-bars');
+        icon.classList.toggle('fa-xmark');
+    });
+</script>
+</body>
+</html>

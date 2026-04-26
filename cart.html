@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="output.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@100..900&display=swap" rel="stylesheet">
+    <title>Steps | Cart</title>
+    <style>
+        * { font-family: 'Raleway', sans-serif; }
+ 
+        
+        #mobile-menu          { display: none; }
+        #mobile-menu.open     { display: flex; }
+
+        
+        .nav-link             { position: relative; padding-bottom: 2px; }
+        .nav-link::after      { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 1px; background: #000; transition: width 0.3s ease; }
+        .nav-link:hover::after{ width: 100%; }
+
+        
+        #checkout-drawer {
+            position: fixed;
+            top: 0; right: 0;
+            width: 100%; max-width: 440px; height: 100%;
+            background: #0f0f0f;
+            z-index: 100;
+            transform: translateX(100%);
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow-y: auto;
+            border-left: 1px solid rgba(255,255,255,0.08);
+        }
+        #checkout-drawer.drawer-open {
+            transform: translateX(0);   
+        }
+
+        
+        #drawer-overlay {
+            position: fixed; inset: 0; z-index: 90;
+            background: rgba(0,0,0,0.65);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s ease;
+        }
+        #drawer-overlay.overlay-show {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        
+        .qty-btn {
+            width: 30px; height: 30px;
+            border-radius: 50%;
+            border: 1px solid rgba(0,0,0,0.2);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 16px; font-weight: bold;
+            cursor: pointer;
+            transition: all 0.2s;
+            background: white;
+            color: black;
+        }
+        .qty-btn:hover { background: black; color: white; border-color: black; }
+
+        
+        @keyframes rowIn {
+            from { opacity: 0; transform: translateY(14px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+        .cart-row { animation: rowIn 0.35s ease forwards; opacity: 0; }
+        .cart-row:nth-child(1) { animation-delay: 0.05s; }
+        .cart-row:nth-child(2) { animation-delay: 0.12s; }
+        .cart-row:nth-child(3) { animation-delay: 0.19s; }
+        .cart-row:nth-child(4) { animation-delay: 0.26s; }
+        .cart-row:nth-child(5) { animation-delay: 0.33s; }
+
+        
+        #mobile-checkout-bar {
+            position: fixed; bottom: 0; left: 0; right: 0; z-index: 40;
+        }
+    </style>
+</head>
+<body class="bg-white text-black overflow-x-hidden min-h-screen pb-28 md:pb-0 slide-in-left">
+
+<nav class="w-[90%] md:w-[85%] mx-auto px-2 py-5">
+    <div class="flex items-center justify-between">
+
+        <a href="index.html">
+            <div class="font-bold text-2xl tracking-[0.6em] cursor-pointer select-none shrink-0">STEPS</div>
+        </a>
+
+        <ul class="hidden md:flex gap-6 lg:gap-8">
+            <a href="Shop.html">   <li class="nav-link text-sm lg:text-base font-semibold cursor-pointer">Shop</li></a>
+            <a href="contact.html"><li class="nav-link text-sm lg:text-base font-semibold cursor-pointer">Contact</li></a>
+        </ul>
+
+        <div class="hidden md:flex items-center gap-4">
+            <a href="Login.html"><i class="fa fa-user text-xl cursor-pointer"></i></a>
+            
+            <a href="cart.html" class="relative">
+                <i class="fa fa-shopping-cart text-xl"></i>
+                <span id="cart-badge"
+                      class="hidden absolute -top-2 -right-2 bg-lime-400 text-black text-[9px] font-black w-4 h-4 flex items-center justify-center rounded-full">0</span>
+            </a>
+        </div>
+
+        <button id="hamburger" class="md:hidden text-xl focus:outline-none">
+            <i class="fa fa-bars"></i>
+        </button>
+    </div>
+
+    <div id="mobile-menu" class="flex-col items-center gap-4 pt-6 pb-2 md:hidden">
+        <ul class="flex flex-col items-center gap-4 w-full border-t border-black/10 pt-4">
+            <a href="Shop.html">   <li class="nav-link text-sm font-semibold cursor-pointer">Shop</li></a>
+            <a href="contact.html"><li class="nav-link text-sm font-semibold cursor-pointer">Contact</li></a>
+        </ul>
+        <div class="flex gap-5 pt-2">
+            <a href="Login.html"><i class="fa fa-user text-xl cursor-pointer"></i></a>
+            <a href="cart.html" class="relative">
+                <i class="fa fa-shopping-cart text-xl"></i>
+                <span id="cart-badge-mobile"
+                      class="hidden absolute -top-2 -right-2 bg-lime-400 text-black text-[9px] font-black w-4 h-4 flex items-center justify-center rounded-full">0</span>
+            </a>
+        </div>
+    </div>
+</nav>
+
+<div class="w-[90%] md:w-[85%] mx-auto px-2 py-3">
+    <div class="flex items-center gap-3 text-xs text-gray-400">
+        <div class="flex items-center gap-1.5">
+            <div class="w-2 h-2 rounded-full bg-black ring-2 ring-black/20"></div>
+            <span class="font-bold text-black">Cart</span>
+        </div>
+        <div class="flex-1 max-w-8 h-px bg-gray-200"></div>
+        <div class="flex items-center gap-1.5">
+            <div class="w-2 h-2 rounded-full bg-gray-200"></div>
+            <span>Checkout</span>
+        </div>
+        <div class="flex-1 max-w-8 h-px bg-gray-200"></div>
+        <div class="flex items-center gap-1.5">
+            <div class="w-2 h-2 rounded-full bg-gray-200"></div>
+            <span>Confirm</span>
+        </div>
+    </div>
+</div>
+
+<div class="w-[90%] md:w-[85%] mx-auto px-2 pt-6 pb-4 border-b border-gray-100 flex items-end justify-between flex-wrap gap-4">
+    <div>
+        <h1 class="text-3xl sm:text-4xl font-black tracking-tight">Shopping Bag</h1>
+        
+        <p class="text-gray-400 text-sm mt-1"><span id="cart-count">0</span> items</p>
+    </div>
+    
+    <button id="header-checkout-btn"
+            onclick="openDrawer()"
+            class="hidden md:flex items-center gap-3 bg-black text-white px-6 py-3 text-sm font-bold tracking-widest hover:bg-black/80 transition rounded-lg">
+        Checkout — <span id="header-total">$0.00</span>
+    </button>
+</div>
+
+<main class="w-[90%] md:w-[85%] mx-auto px-2 py-8 flex flex-col lg:flex-row gap-10">
+
+    
+    <section class="flex-1">
+
+        
+        <div id="empty-state" class="hidden flex-col items-center justify-center py-24 text-center">
+            <div class="text-7xl mb-6 opacity-15">👟</div>
+            <p class="text-2xl font-black text-gray-200 mb-2">Your bag is empty</p>
+            <p class="text-gray-400 text-sm mb-8">Nothing here yet. Go find something you love.</p>
+            <a href="Shop.html"
+               class="inline-block bg-black text-white px-10 py-3 text-sm font-bold tracking-widest hover:bg-black/80 transition rounded-lg">
+                SHOP NOW
+            </a>
+        </div>
+
+        
+        <div id="cart-items-container" class="flex flex-col divide-y divide-gray-100"></div>
+
+    </section>
+
+    
+    <aside id="order-summary" class="hidden lg:w-80 xl:w-96 shrink-0">
+        <div class="border border-gray-100 rounded-xl p-6 sticky top-6">
+
+            <h2 class="text-sm font-bold tracking-widest uppercase text-gray-400 mb-6">Order Summary</h2>
+
+            <div class="flex flex-col gap-3 text-sm">
+                <div class="flex justify-between">
+                    <span class="text-gray-500">Subtotal</span>
+                    <span id="summary-subtotal" class="font-bold">$0.00</span>
+                </div>
+                <div class="flex justify-between">
+                    <span class="text-gray-500">Shipping</span>
+                    <span id="summary-shipping" class="font-bold">$0.00</span>
+                </div>
+                
+                <p id="shipping-note" class="text-xs text-gray-400 text-right"></p>
+            </div>
+
+            <div class="border-t border-gray-100 my-4"></div>
+
+            <div class="flex justify-between font-black text-lg">
+                <span>Total</span>
+                <span id="summary-total">$0.00</span>
+            </div>
+
+            
+            <div class="mt-6 flex gap-2">
+                <input id="promo-input"
+                       type="text"
+                       placeholder="Promo code"
+                       class="flex-1 border border-gray-200 px-4 py-2.5 text-sm focus:outline-none focus:border-black rounded-lg transition">
+                <button onclick="applyPromo()"
+                        class="border border-gray-200 px-4 py-2.5 text-xs font-bold tracking-widest hover:bg-black hover:text-white hover:border-black transition rounded-lg">
+                    APPLY
+                </button>
+            </div>
+            <p id="promo-msg" class="text-xs mt-2 hidden"></p>
+
+            
+            <button onclick="openDrawer()"
+                    class="w-full mt-6 bg-black text-white py-4 font-black text-sm tracking-widest hover:bg-black/80 transition rounded-lg">
+                CHECKOUT →
+            </button>
+
+            <a href="Shop.html"
+               class="block text-center mt-4 text-xs text-gray-400 hover:text-black transition underline underline-offset-4">
+                Continue Shopping
+            </a>
+        </div>
+    </aside>
+
+</main>
+
+<div id="mobile-checkout-bar" class="md:hidden hidden bg-white border-t border-gray-100 p-4 shadow-lg">
+    <button onclick="openDrawer()"
+            class="w-full bg-black text-white py-4 font-black text-sm tracking-widest hover:bg-black/80 transition rounded-lg flex items-center justify-center gap-3">
+        CHECKOUT — <span id="mobile-total">$0.00</span>
+    </button>
+</div>
+
+<div id="drawer-overlay" onclick="closeDrawer()"></div>
+
+<div id="checkout-drawer">
+    <div class="p-6 min-h-full flex flex-col text-white">
+
+        
+        <div class="flex items-center justify-between mb-8">
+            <h2 class="text-xl font-black tracking-widest">CHECKOUT</h2>
+            <button onclick="closeDrawer()"
+                    class="text-white/40 hover:text-white transition text-2xl w-8 h-8 flex items-center justify-center">
+                <i class="fa fa-times"></i>
+            </button>
+        </div>
+
+        
+        
+        <div id="drawer-items" class="flex flex-col gap-4 flex-1 overflow-y-auto mb-6"></div>
+
+        
+        <div class="border-t border-white/10 pt-6">
+            <div class="flex flex-col gap-2 text-sm mb-6">
+                <div class="flex justify-between">
+                    <span class="text-white/50">Subtotal</span>
+                    <span id="drawer-subtotal" class="font-bold">$0.00</span>
+                </div>
+                <div class="flex justify-between">
+                    <span class="text-white/50">Shipping</span>
+                    <span id="drawer-shipping" class="font-bold">$0.00</span>
+                </div>
+                <div class="flex justify-between text-base font-black pt-3 border-t border-white/10">
+                    <span>Total</span>
+                    <span id="drawer-total">$0.00</span>
+                </div>
+            </div>
+
+            
+            <div class="flex gap-2 mb-4">
+                <input id="drawer-promo-input"
+                       type="text"
+                       placeholder="Promo code"
+                       class="flex-1 bg-white/5 border border-white/15 px-3 py-2.5 text-xs text-white placeholder-white/30 focus:outline-none focus:border-white transition rounded-lg">
+                <button onclick="applyPromo('drawer')"
+                        class="border border-white/30 px-4 py-2.5 text-xs font-bold tracking-widest hover:bg-white hover:text-black transition rounded-lg">
+                    APPLY
+                </button>
+            </div>
+            <p id="drawer-promo-msg" class="text-xs mb-4 hidden"></p>
+
+            
+            <button class="w-full bg-white text-black py-4 font-black text-sm tracking-widest hover:bg-white/85 transition rounded-lg">
+                PLACE ORDER →
+            </button>
+
+            
+            <div class="flex justify-center gap-6 mt-5 text-white/25 text-xs">
+                <span><i class="fa fa-lock mr-1"></i>Secure</span>
+                <span><i class="fa fa-undo mr-1"></i>30-day returns</span>
+                <span><i class="fa fa-truck mr-1"></i>Free over $100</span>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script src="cart.js"></script>
+
+<script>
+
+function renderCart() {
+
+    
+    let cart = getCart();   
+
+    
+    let container      = document.getElementById('cart-items-container');
+    let emptyState     = document.getElementById('empty-state');
+    let summaryPanel   = document.getElementById('order-summary');
+    let mobileBar      = document.getElementById('mobile-checkout-bar');
+    let headerBtn      = document.getElementById('header-checkout-btn');
+
+    
+    if (cart.length === 0) {
+        container.innerHTML = '';
+
+        
+        emptyState.classList.remove('hidden');
+        emptyState.classList.add('flex');
+
+        
+        summaryPanel.classList.add('hidden');
+        mobileBar.classList.add('hidden');
+        if (headerBtn) headerBtn.classList.add('hidden');
+
+        
+        document.getElementById('cart-count').textContent = '0';
+        return;   
+    }
+
+    
+    emptyState.classList.add('hidden');
+    emptyState.classList.remove('flex');
+    summaryPanel.classList.remove('hidden');
+    mobileBar.classList.remove('hidden');
+    if (headerBtn) headerBtn.classList.remove('hidden');
+
+    
+    
+    
+    
+    
+    
+    
+    let itemsHTML = cart.map(item => `
+
+        <div class="cart-row flex flex-col sm:flex-row gap-4 py-5 items-start sm:items-center" data-id="${item.id}">
+
+            
+            <div class="w-20 h-20 sm:w-24 sm:h-24 bg-gray-50 rounded-xl overflow-hidden border border-gray-100 shrink-0">
+                <img src="${item.img}"
+                     alt="${item.name}"
+                     class="w-full h-full object-cover"
+                     onerror="this.src='https://placehold.co/96x96/f5f5f5/999?text=?'">
+            </div>
+
+            
+            <div class="flex-1 min-w-0">
+                <h3 class="font-black text-sm sm:text-base">${item.name}</h3>
+                <p class="text-gray-400 text-xs mt-0.5 capitalize">${item.section}'s</p>
+                
+                <p class="font-bold mt-2 text-sm">$${(item.price * item.qty).toFixed(2)}</p>
+            </div>
+
+            
+            <div class="flex items-center gap-3 shrink-0">
+
+                
+                <button onclick="changeQty('${item.id}', -1); renderCart();"
+                        class="qty-btn" aria-label="Decrease quantity">−</button>
+
+                <span class="font-black text-sm w-4 text-center">${item.qty}</span>
+
+                <button onclick="changeQty('${item.id}', 1); renderCart();"
+                        class="qty-btn" aria-label="Increase quantity">+</button>
+            </div>
+
+            
+            
+            <button onclick="removeFromCart('${item.id}'); renderCart();"
+                    class="text-gray-300 hover:text-red-400 transition text-sm shrink-0 ml-1"
+                    aria-label="Remove item">
+                <i class="fa fa-trash"></i>
+            </button>
+
+        </div>
+
+    `).join('');
+
+    container.innerHTML = itemsHTML;
+
+    
+    updateSummaryNumbers(cart);
+}
+
+function updateSummaryNumbers(cart) {
+
+    
+    
+    let subtotal = cart.reduce((acc, item) => acc + (item.price * item.qty), 0);
+
+    
+    let shipping = subtotal >= 100 ? 0 : 9.99;
+
+    let total = subtotal + shipping;
+
+    
+    let fmt = n => `$${n.toFixed(2)}`;
+
+    
+    document.getElementById('summary-subtotal').textContent = fmt(subtotal);
+    document.getElementById('summary-shipping').textContent = shipping === 0 ? 'FREE' : fmt(shipping);
+    document.getElementById('summary-total').textContent    = fmt(total);
+
+    
+    let note = document.getElementById('shipping-note');
+    if (subtotal < 100) {
+        note.textContent = `$${(100 - subtotal).toFixed(2)} away from free shipping`;
+    } else {
+        note.textContent = '✓ Free shipping applied';
+        note.style.color = '#65a30d';   
+    }
+
+    
+    document.getElementById('drawer-subtotal').textContent = fmt(subtotal);
+    document.getElementById('drawer-shipping').textContent = shipping === 0 ? 'FREE' : fmt(shipping);
+    document.getElementById('drawer-total').textContent    = fmt(total);
+
+    
+    let headerTotal = document.getElementById('header-total');
+    if (headerTotal) headerTotal.textContent = fmt(total);
+
+    
+    let mobileTotal = document.getElementById('mobile-total');
+    if (mobileTotal) mobileTotal.textContent = fmt(total);
+
+    
+    let totalQty = cart.reduce((acc, item) => acc + item.qty, 0);
+    document.getElementById('cart-count').textContent = totalQty;
+
+    
+    let badge = document.getElementById('cart-badge');
+    if (badge) {
+        badge.textContent = totalQty;
+        badge.classList.toggle('hidden', totalQty === 0);
+    }
+
+    
+    renderDrawerItems(cart);
+}
+
+function renderDrawerItems(cart) {
+    let container = document.getElementById('drawer-items');
+    if (!container) return;
+
+    if (cart.length === 0) {
+        container.innerHTML = '<p class="text-white/30 text-sm text-center py-8">Cart is empty</p>';
+        return;
+    }
+
+    container.innerHTML = cart.map(item => `
+        <div class="flex gap-3 items-center">
+            <img src="${item.img}"
+                 alt="${item.name}"
+                 class="w-14 h-14 object-cover rounded-lg bg-white/5 border border-white/10 shrink-0"
+                 onerror="this.src='https://placehold.co/56x56/1f1f1f/fff?text=?'">
+            <div class="flex-1 min-w-0">
+                <p class="text-sm font-bold truncate">${item.name}</p>
+                <p class="text-xs text-white/40">Qty ${item.qty}</p>
+            </div>
+            <p class="text-sm font-bold shrink-0">$${(item.price * item.qty).toFixed(2)}</p>
+        </div>
+    `).join('');
+}
+
+function openDrawer() {
+    document.getElementById('checkout-drawer').classList.add('drawer-open');
+    document.getElementById('drawer-overlay').classList.add('overlay-show');
+    document.body.style.overflow = 'hidden';   
+}
+
+function closeDrawer() {
+    document.getElementById('checkout-drawer').classList.remove('drawer-open');
+    document.getElementById('drawer-overlay').classList.remove('overlay-show');
+    document.body.style.overflow = '';          
+}
+
+document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') closeDrawer();
+});
+
+function applyPromo(source) {
+    
+    let inputId = source === 'drawer' ? 'drawer-promo-input' : 'promo-input';
+    let msgId   = source === 'drawer' ? 'drawer-promo-msg'   : 'promo-msg';
+
+    let code  = document.getElementById(inputId).value.trim().toUpperCase();
+    let msgEl = document.getElementById(msgId);
+
+    
+    let validCodes = { 'STEPS10': 10, 'WELCOME': 15, 'SALE20': 20 };
+
+    if (validCodes[code]) {
+        msgEl.textContent = `✓ ${validCodes[code]}% discount applied!`;
+        msgEl.className   = 'text-xs mt-1 text-lime-500';
+    } else if (code === '') {
+        msgEl.textContent = 'Please enter a promo code.';
+        msgEl.className   = 'text-xs mt-1 text-gray-400';
+    } else {
+        msgEl.textContent = '✗ Invalid promo code.';
+        msgEl.className   = 'text-xs mt-1 text-red-400';
+    }
+    msgEl.classList.remove('hidden');
+}
+
+document.getElementById('hamburger').addEventListener('click', function () {
+    document.getElementById('mobile-menu').classList.toggle('open');
+    let icon = this.querySelector('i');
+    icon.classList.toggle('fa-bars');
+    icon.classList.toggle('fa-xmark');
+});
+
+renderCart();
+
+</script>
+
+</body>
+</html>

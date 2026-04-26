@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="output.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@100..900&display=swap" rel="stylesheet">
+    <title>Steps | Shop</title>
+    <style>
+        * { font-family: 'Raleway', sans-serif; }
+
+        #mobile-menu { display: none; }
+         #mobile-menu.open { display: flex; }
+
+        .nav-link { position: relative; padding-bottom: 2px; }
+        .nav-link::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 1px; background: #000; transition: width 0.3s ease; }
+        .nav-link:hover::after { width: 100%; }
+
+        .card-img { transition: transform 0.5s cubic-bezier(.25,.8,.25,1); }
+        .group:hover .card-img { transform: scale(1.08) rotate(1deg); }
+
+        .overlay { transition: opacity 0.3s ease; }
+        .group:hover .overlay { opacity: 1 !important; }
+        .card-label { transition: opacity 0.3s ease, transform 0.3s ease; }
+        .group:hover .card-label { opacity: 1 !important; transform: translateY(0) !important; }
+
+        @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+    </style>
+</head>
+<body class="overflow-x-hidden bg-white text-black slide-in-left">
+
+<nav class="w-[90%] md:w-[85%] mx-auto px-2 py-5">
+    <div class="flex items-center justify-between">
+
+        <a href="index.html">
+            <div class="font-bold text-2xl tracking-[0.6em] cursor-pointer select-none shrink-0">STEPS</div>
+        </a>
+
+        <ul class="hidden md:flex gap-6 lg:gap-8">
+            <a href="Shop.html"><li class="nav-link text-sm lg:text-base font-semibold cursor-pointer">Shop</li></a>
+            <a href="#arrivals"><li class="nav-link text-sm lg:text-base font-semibold cursor-pointer">New Arrivals</li></a>
+            <a href="contact.html"><li class="nav-link text-sm lg:text-base font-semibold cursor-pointer">Contact</li></a>
+        </ul>
+
+        <div class="hidden md:flex items-center gap-4">
+            <a href="Login.html"><i class="fa fa-user text-xl cursor-pointer"></i></a>
+
+            <a href="cart.html" class="relative">
+                <i class="fa fa-shopping-cart text-xl cursor-pointer"></i>
+                <span id="cart-badge" class="hidden absolute -top-2 -right-2 bg-lime-400 text-black text-[9px] font-black w-4 h-4 flex items-center justify-center rounded-full">0</span>
+            </a>
+        </div>
+
+        <button id="hamburger" class="md:hidden text-xl focus:outline-none">
+            <i class="fa fa-bars"></i>
+        </button>
+    </div>
+
+    <div id="mobile-menu" class="flex-col items-center gap-4 pt-6 pb-2 md:hidden">
+        <ul class="flex flex-col items-center gap-4 w-full border-t border-black/10 pt-4">
+            <a href="Shop.html"><li class="nav-link text-sm font-semibold cursor-pointer">Shop</li></a>
+            <a href="#arrivals"><li class="nav-link text-sm font-semibold cursor-pointer">New Arrivals</li></a>
+            <a href="contact.html"><li class="nav-link text-sm font-semibold cursor-pointer">Contact</li></a>
+        </ul>
+        <div class="flex gap-5 pt-2 items-center">
+            <a href="Login.html"><i class="fa fa-user text-xl cursor-pointer"></i></a>
+            <a href="cart.html" class="relative">
+                <i class="fa fa-shopping-cart text-xl cursor-pointer"></i>
+                <span id="cart-badge-mobile" class="hidden absolute -top-2 -right-2 bg-lime-400 text-black text-[9px] font-black w-4 h-4 flex items-center justify-center rounded-full">0</span>
+            </a>
+        </div>
+    </div>
+</nav>
+
+<section class="w-[90%] md:w-[85%] mx-auto py-10" id="arrivals">
+
+    <div class="flex items-end justify-between mb-10 flex-wrap gap-4">
+        <div>
+            <span class="inline-block bg-lime-300 text-black text-[10px] font-semibold tracking-widest uppercase px-3 py-1 rounded-full mb-2">
+                Men's Collection
+            </span>
+            <h2 class="text-5xl sm:text-6xl font-black tracking-tight leading-none">New Arrivals</h2>
+        </div>
+        <button class="group/btn flex items-center gap-2 text-sm font-medium text-gray-400 hover:text-black transition pb-1 border-b border-transparent hover:border-black">
+            View all <i class="fa-solid fa-arrow-right-long transition-transform group-hover/btn:translate-x-1"></i>
+        </button>
+    </div>
+
+    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 sm:gap-5">
+
+        <div class="group flex flex-col">
+            <div class="relative overflow-hidden rounded-xl bg-gray-50 aspect-square">
+                <img src="imgs/sneaker1.png" alt="Air Max 90" class="card-img w-full h-full object-cover">
+                <div class="overlay absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0"></div>
+                <span class="absolute top-2.5 left-2.5 bg-white text-black text-[9px] font-semibold uppercase tracking-widest px-2 py-0.5 rounded-full">New</span>
+                <div class="card-label absolute bottom-0 left-0 right-0 px-3 pb-3 opacity-0" style="transform:translateY(6px)">
+                    <span class="block text-[10px] uppercase tracking-widest text-white/70">Air Series</span>
+                    <strong class="block text-sm font-medium text-white">Air Max 90</strong>
+                </div>
+            </div>
+            <div class="mt-3 flex flex-col gap-2">
+                <div class="flex items-center justify-between">
+                    <h3 class="text-sm font-semibold truncate">Air Max 90</h3>
+                    <p class="text-sm font-bold text-gray-700 shrink-0 ml-2">$120</p>
+                </div>
+                <button class="add-to-cart-btn w-full py-2 bg-black text-white text-xs font-semibold tracking-wide border border-black hover:bg-white hover:text-black rounded-lg flex items-center justify-center gap-2 transition"
+                    data-id="airmax90"
+                    data-name="Air Max 90"
+                    data-price="120"
+                    data-img="imgs/sneaker1.png"
+                    data-section="men">
+                    Add to cart <i class="fa fa-shopping-cart"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="group flex flex-col">
+            <div class="relative overflow-hidden rounded-xl bg-gray-50 aspect-square">
+                <img src="imgs/sneaker2.png" alt="Urban Runner" class="card-img w-full h-full object-cover">
+                <div class="overlay absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0"></div>
+                <span class="absolute top-2.5 left-2.5 bg-white text-black text-[9px] font-semibold uppercase tracking-widest px-2 py-0.5 rounded-full">New</span>
+                <div class="card-label absolute bottom-0 left-0 right-0 px-3 pb-3 opacity-0" style="transform:translateY(6px)">
+                    <span class="block text-[10px] uppercase tracking-widest text-white/70">Urban Run</span>
+                    <strong class="block text-sm font-medium text-white">Urban Runner</strong>
+                </div>
+            </div>
+            <div class="mt-3 flex flex-col gap-2">
+                <div class="flex items-center justify-between">
+                    <h3 class="text-sm font-semibold truncate">Urban Runner</h3>
+                    <p class="text-sm font-bold text-gray-700 shrink-0 ml-2">$135</p>
+                </div>
+                <button class="add-to-cart-btn w-full py-2 bg-black text-white text-xs font-semibold tracking-wide border border-black hover:bg-white hover:text-black rounded-lg flex items-center justify-center gap-2 transition"
+                    data-id="urbanrunner"
+                    data-name="Urban Runner"
+                    data-price="135"
+                    data-img="imgs/sneaker2.png"
+                    data-section="men">
+                    Add to cart <i class="fa fa-shopping-cart"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="group flex flex-col">
+            <div class="relative overflow-hidden rounded-xl bg-gray-50 aspect-square">
+                <img src="imgs/sneaker3.png" alt="Street Flux" class="card-img w-full h-full object-cover">
+                <div class="overlay absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0"></div>
+                <span class="absolute top-2.5 left-2.5 bg-white text-black text-[9px] font-semibold uppercase tracking-widest px-2 py-0.5 rounded-full">New</span>
+                <div class="card-label absolute bottom-0 left-0 right-0 px-3 pb-3 opacity-0" style="transform:translateY(6px)">
+                    <span class="block text-[10px] uppercase tracking-widest text-white/70">Street Flux</span>
+                    <strong class="block text-sm font-medium text-white">Street Flux</strong>
+                </div>
+            </div>
+            <div class="mt-3 flex flex-col gap-2">
+                <div class="flex items-center justify-between">
+                    <h3 class="text-sm font-semibold truncate">Street Flux</h3>
+                    <p class="text-sm font-bold text-gray-700 shrink-0 ml-2">$110</p>
+                </div>
+                <button class="add-to-cart-btn w-full py-2 bg-black text-white text-xs font-semibold tracking-wide border border-black hover:bg-white hover:text-black rounded-lg flex items-center justify-center gap-2 transition"
+                    data-id="streetflux"
+                    data-name="Street Flux"
+                    data-price="110"
+                    data-img="imgs/sneaker3.png"
+                    data-section="men">
+                    Add to cart <i class="fa fa-shopping-cart"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="group flex flex-col">
+            <div class="relative overflow-hidden rounded-xl bg-gray-50 aspect-square">
+                <img src="imgs/sneaker4.png" alt="Cloud Step" class="card-img w-full h-full object-cover">
+                <div class="overlay absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0"></div>
+                <span class="absolute top-2.5 left-2.5 bg-lime-300 text-black text-[9px] font-semibold uppercase tracking-widest px-2 py-0.5 rounded-full">Hot</span>
+                <div class="card-label absolute bottom-0 left-0 right-0 px-3 pb-3 opacity-0" style="transform:translateY(6px)">
+                    <span class="block text-[10px] uppercase tracking-widest text-white/70">Cloud Step</span>
+                    <strong class="block text-sm font-medium text-white">Cloud Step</strong>
+                </div>
+            </div>
+            <div class="mt-3 flex flex-col gap-2">
+                <div class="flex items-center justify-between">
+                    <h3 class="text-sm font-semibold truncate">Cloud Step</h3>
+                    <p class="text-sm font-bold text-gray-700 shrink-0 ml-2">$145</p>
+                </div>
+                <button class="add-to-cart-btn w-full py-2 bg-black text-white text-xs font-semibold tracking-wide border border-black hover:bg-white hover:text-black rounded-lg flex items-center justify-center gap-2 transition"
+                    data-id="cloudstep"
+                    data-name="Cloud Step"
+                    data-price="145"
+                    data-img="imgs/sneaker4.png"
+                    data-section="men">
+                    Add to cart <i class="fa fa-shopping-cart"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="group flex flex-col">
+            <div class="relative overflow-hidden rounded-xl bg-gray-50 aspect-square">
+                <img src="imgs/sneaker5.png" alt="Drift Low" class="card-img w-full h-full object-cover">
+                <div class="overlay absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0"></div>
+                <span class="absolute top-2.5 left-2.5 bg-white text-black text-[9px] font-semibold uppercase tracking-widest px-2 py-0.5 rounded-full">New</span>
+                <div class="card-label absolute bottom-0 left-0 right-0 px-3 pb-3 opacity-0" style="transform:translateY(6px)">
+                    <span class="block text-[10px] uppercase tracking-widest text-white/70">Drift Low</span>
+                    <strong class="block text-sm font-medium text-white">Drift Low</strong>
+                </div>
+            </div>
+            <div class="mt-3 flex flex-col gap-2">
+                <div class="flex items-center justify-between">
+                    <h3 class="text-sm font-semibold truncate">Drift Low</h3>
+                    <p class="text-sm font-bold text-gray-700 shrink-0 ml-2">$125</p>
+                </div>
+                <button class="add-to-cart-btn w-full py-2 bg-black text-white text-xs font-semibold tracking-wide border border-black hover:bg-white hover:text-black rounded-lg flex items-center justify-center gap-2 transition"
+                    data-id="driftlow"
+                    data-name="Drift Low"
+                    data-price="125"
+                    data-img="imgs/sneaker5.png"
+                    data-section="men">
+                    Add to cart <i class="fa fa-shopping-cart"></i>
+                </button>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<div class="bg-black text-white py-4 overflow-hidden my-4">
+    <div class="flex gap-12 whitespace-nowrap text-2xl font-black tracking-widest" style="animation: marquee 18s linear infinite;">
+        <span>FREE SHIPPING OVER $100</span>
+        <span class="text-lime-300">✦</span>
+        <span>NEW SEASON DROP</span>
+        <span class="text-lime-300">✦</span>
+        <span>30-DAY RETURNS</span>
+        <span class="text-lime-300">✦</span>
+        <span>FREE SHIPPING OVER $100</span>
+        <span class="text-lime-300">✦</span>
+        <span>NEW SEASON DROP</span>
+        <span class="text-lime-300">✦</span>
+        <span>30-DAY RETURNS</span>
+        <span class="text-lime-300">✦</span>
+    </div>
+</div>
+
+<section class="w-[90%] md:w-[85%] mx-auto py-10" id="little-steps">
+
+    <div class="flex items-end justify-between mb-10 flex-wrap gap-4">
+        <div>
+            <span class="inline-block bg-lime-400 text-black text-[10px] font-semibold tracking-widest uppercase px-3 py-1 rounded-full mb-2">
+                Kids' Collection
+            </span>
+            <h2 class="text-5xl sm:text-6xl font-black tracking-tight leading-none">Little STEPS</h2>
+        </div>
+        <button class="group/btn flex items-center gap-2 text-sm font-medium text-gray-400 hover:text-black transition pb-1 border-b border-transparent hover:border-black">
+            View all <i class="fa-solid fa-arrow-right-long transition-transform group-hover/btn:translate-x-1"></i>
+        </button>
+    </div>
+
+    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 sm:gap-5">
+
+        <div class="group flex flex-col">
+            <div class="relative overflow-hidden rounded-xl bg-lime-50 aspect-square">
+                <img src="imgs/sneaker1.png" alt="Mini Blaze" class="card-img w-full h-full object-cover">
+                <div class="overlay absolute inset-0 bg-gradient-to-t from-lime-900/50 to-transparent opacity-0"></div>
+                <span class="absolute top-2.5 left-2.5 bg-white text-black text-[9px] font-semibold uppercase tracking-widest px-2 py-0.5 rounded-full">Kids</span>
+                <div class="card-label absolute bottom-0 left-0 right-0 px-3 pb-3 opacity-0" style="transform:translateY(6px)">
+                    <span class="block text-[10px] uppercase tracking-widest text-white/70">Mini Series</span>
+                    <strong class="block text-sm font-medium text-white">Mini Blaze</strong>
+                </div>
+            </div>
+            <div class="mt-3 flex flex-col gap-2">
+                <div class="flex items-center justify-between">
+                    <h3 class="text-sm font-semibold truncate">Mini Blaze</h3>
+                    <p class="text-sm font-bold text-gray-700 shrink-0 ml-2">$65</p>
+                </div>
+                <button class="add-to-cart-btn w-full py-2 bg-lime-400 text-black text-xs font-semibold tracking-wide border border-lime-400 hover:bg-white hover:text-lime-600 rounded-lg flex items-center justify-center gap-2 transition"
+                    data-id="miniblaze"
+                    data-name="Mini Blaze"
+                    data-price="65"
+                    data-img="imgs/sneaker1.png"
+                    data-section="kids">
+                    Add to cart <i class="fa fa-shopping-cart"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="group flex flex-col">
+            <div class="relative overflow-hidden rounded-xl bg-lime-50 aspect-square">
+                <img src="imgs/sneaker2.png" alt="Jump Jr" class="card-img w-full h-full object-cover">
+                <div class="overlay absolute inset-0 bg-gradient-to-t from-lime-900/50 to-transparent opacity-0"></div>
+                <span class="absolute top-2.5 left-2.5 bg-white text-black text-[9px] font-semibold uppercase tracking-widest px-2 py-0.5 rounded-full">Kids</span>
+                <div class="card-label absolute bottom-0 left-0 right-0 px-3 pb-3 opacity-0" style="transform:translateY(6px)">
+                    <span class="block text-[10px] uppercase tracking-widest text-white/70">Playground</span>
+                    <strong class="block text-sm font-medium text-white">Jump Jr</strong>
+                </div>
+            </div>
+            <div class="mt-3 flex flex-col gap-2">
+                <div class="flex items-center justify-between">
+                    <h3 class="text-sm font-semibold truncate">Jump Jr</h3>
+                    <p class="text-sm font-bold text-gray-700 shrink-0 ml-2">$70</p>
+                </div>
+                <button class="add-to-cart-btn w-full py-2 bg-lime-400 text-black text-xs font-semibold tracking-wide border border-lime-400 hover:bg-white hover:text-lime-600 rounded-lg flex items-center justify-center gap-2 transition"
+                    data-id="jumpjr"
+                    data-name="Jump Jr"
+                    data-price="70"
+                    data-img="imgs/sneaker2.png"
+                    data-section="kids">
+                    Add to cart <i class="fa fa-shopping-cart"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="group flex flex-col">
+            <div class="relative overflow-hidden rounded-xl bg-lime-50 aspect-square">
+                <img src="imgs/sneaker3.png" alt="Dino Dash" class="card-img w-full h-full object-cover">
+                <div class="overlay absolute inset-0 bg-gradient-to-t from-lime-900/50 to-transparent opacity-0"></div>
+                <span class="absolute top-2.5 left-2.5 bg-lime-400 text-black text-[9px] font-semibold uppercase tracking-widest px-2 py-0.5 rounded-full">Top Pick</span>
+                <div class="card-label absolute bottom-0 left-0 right-0 px-3 pb-3 opacity-0" style="transform:translateY(6px)">
+                    <span class="block text-[10px] uppercase tracking-widest text-white/70">Fun Run</span>
+                    <strong class="block text-sm font-medium text-white">Dino Dash</strong>
+                </div>
+            </div>
+            <div class="mt-3 flex flex-col gap-2">
+                <div class="flex items-center justify-between">
+                    <h3 class="text-sm font-semibold truncate">Dino Dash</h3>
+                    <p class="text-sm font-bold text-gray-700 shrink-0 ml-2">$75</p>
+                </div>
+                <button class="add-to-cart-btn w-full py-2 bg-lime-400 text-black text-xs font-semibold tracking-wide border border-lime-400 hover:bg-white hover:text-lime-600 rounded-lg flex items-center justify-center gap-2 transition"
+                    data-id="dinodash"
+                    data-name="Dino Dash"
+                    data-price="75"
+                    data-img="imgs/sneaker3.png"
+                    data-section="kids">
+                    Add to cart <i class="fa fa-shopping-cart"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="group flex flex-col">
+            <div class="relative overflow-hidden rounded-xl bg-lime-50 aspect-square">
+                <img src="imgs/sneaker4.png" alt="Speed Kid" class="card-img w-full h-full object-cover">
+                <div class="overlay absolute inset-0 bg-gradient-to-t from-lime-900/50 to-transparent opacity-0"></div>
+                <span class="absolute top-2.5 left-2.5 bg-white text-black text-[9px] font-semibold uppercase tracking-widest px-2 py-0.5 rounded-full">Kids</span>
+                <div class="card-label absolute bottom-0 left-0 right-0 px-3 pb-3 opacity-0" style="transform:translateY(6px)">
+                    <span class="block text-[10px] uppercase tracking-widest text-white/70">Speed Series</span>
+                    <strong class="block text-sm font-medium text-white">Speed Kid</strong>
+                </div>
+            </div>
+            <div class="mt-3 flex flex-col gap-2">
+                <div class="flex items-center justify-between">
+                    <h3 class="text-sm font-semibold truncate">Speed Kid</h3>
+                    <p class="text-sm font-bold text-gray-700 shrink-0 ml-2">$68</p>
+                </div>
+                <button class="add-to-cart-btn w-full py-2 bg-lime-400 text-black text-xs font-semibold tracking-wide border border-lime-400 hover:bg-white hover:text-lime-600 rounded-lg flex items-center justify-center gap-2 transition"
+                    data-id="speedkid"
+                    data-name="Speed Kid"
+                    data-price="68"
+                    data-img="imgs/sneaker4.png"
+                    data-section="kids">
+                    Add to cart <i class="fa fa-shopping-cart"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="group flex flex-col">
+            <div class="relative overflow-hidden rounded-xl bg-lime-50 aspect-square">
+                <img src="imgs/sneaker5.png" alt="Lil Air" class="card-img w-full h-full object-cover">
+                <div class="overlay absolute inset-0 bg-gradient-to-t from-lime-900/50 to-transparent opacity-0"></div>
+                <span class="absolute top-2.5 left-2.5 bg-white text-black text-[9px] font-semibold uppercase tracking-widest px-2 py-0.5 rounded-full">Kids</span>
+                <div class="card-label absolute bottom-0 left-0 right-0 px-3 pb-3 opacity-0" style="transform:translateY(6px)">
+                    <span class="block text-[10px] uppercase tracking-widest text-white/70">Lil Series</span>
+                    <strong class="block text-sm font-medium text-white">Lil Air</strong>
+                </div>
+            </div>
+            <div class="mt-3 flex flex-col gap-2">
+                <div class="flex items-center justify-between">
+                    <h3 class="text-sm font-semibold truncate">Lil Air</h3>
+                    <p class="text-sm font-bold text-gray-700 shrink-0 ml-2">$60</p>
+                </div>
+                <button class="add-to-cart-btn w-full py-2 bg-lime-400 text-black text-xs font-semibold tracking-wide border border-lime-400 hover:bg-white hover:text-lime-600 rounded-lg flex items-center justify-center gap-2 transition"
+                    data-id="lilair"
+                    data-name="Lil Air"
+                    data-price="60"
+                    data-img="imgs/sneaker5.png"
+                    data-section="kids">
+                    Add to cart <i class="fa fa-shopping-cart"></i>
+                </button>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<footer class="mt-10 border-t border-gray-200">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8 pt-16 pb-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
+
+        <div class="flex flex-col gap-4">
+            <span class="text-2xl font-black tracking-[0.3em]">STEPS</span>
+            <p class="text-gray-400 text-sm leading-relaxed">Premium footwear crafted for every step of your journey.</p>
+            <div class="flex gap-4 mt-2">
+                <a href="#" class="w-9 h-9 rounded-full border border-gray-300 flex items-center justify-center text-gray-400 hover:border-black hover:text-black transition text-sm"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#" class="w-9 h-9 rounded-full border border-gray-300 flex items-center justify-center text-gray-400 hover:border-black hover:text-black transition text-sm"><i class="fa-brands fa-tiktok"></i></a>
+                <a href="#" class="w-9 h-9 rounded-full border border-gray-300 flex items-center justify-center text-gray-400 hover:border-black hover:text-black transition text-sm"><i class="fa-brands fa-x-twitter"></i></a>
+            </div>
+        </div>
+
+        <div>
+            <h4 class="text-xs font-semibold uppercase tracking-widest text-gray-400 mb-5">Shop</h4>
+            <ul class="flex flex-col gap-3 text-sm text-gray-500">
+                <li><a href="#arrivals" class="hover:text-black transition">Men's Shoes</a></li>
+                <li><a href="#little-steps" class="hover:text-black transition">Kids' Shoes</a></li>
+                <li><a href="#arrivals" class="hover:text-black transition">New Arrivals</a></li>
+                <li><a href="#" class="hover:text-black transition">Sale</a></li>
+            </ul>
+        </div>
+
+        <div>
+            <h4 class="text-xs font-semibold uppercase tracking-widest text-gray-400 mb-5">Help</h4>
+            <ul class="flex flex-col gap-3 text-sm text-gray-500">
+                <li><a href="#" class="hover:text-black transition">Size Guide</a></li>
+                <li><a href="#" class="hover:text-black transition">Track My Order</a></li>
+                <li><a href="#" class="hover:text-black transition">Returns & Exchanges</a></li>
+                <li><a href="#" class="hover:text-black transition">Shipping Info</a></li>
+                <li><a href="contact.html" class="hover:text-black transition">Contact Us</a></li>
+            </ul>
+        </div>
+
+        <div>
+            <h4 class="text-xs font-semibold uppercase tracking-widest text-gray-400 mb-5">Stay in the loop</h4>
+            <p class="text-sm text-gray-400 mb-4 leading-relaxed">Early access to drops, exclusive deals and style updates.</p>
+            <div class="flex gap-2">
+                <input type="email" placeholder="your@email.com"
+                       class="flex-1 min-w-0 border border-gray-300 text-sm px-4 py-2.5 rounded-lg focus:outline-none focus:border-lime-400 transition">
+                <button class="bg-lime-400 text-black text-xs font-bold px-4 py-2.5 rounded-lg hover:bg-lime-500 transition shrink-0">Join</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="border-t border-gray-200">
+        <div class="max-w-7xl mx-auto px-5 sm:px-8 py-5 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-gray-400">
+            <span>© 2025 STEPS. All rights reserved.</span>
+            <div class="flex gap-6">
+                <a href="#" class="hover:text-black transition">Privacy Policy</a>
+                <a href="#" class="hover:text-black transition">Terms of Use</a>
+            </div>
+            <div class="flex items-center gap-2">
+                <i class="fa-brands fa-cc-visa text-xl"></i>
+                <i class="fa-brands fa-cc-mastercard text-xl"></i>
+                <i class="fa-brands fa-cc-paypal text-xl"></i>
+                <i class="fa-brands fa-apple-pay text-xl"></i>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script src="cart.js"></script>
+
+<script>
+document.getElementById('hamburger').addEventListener('click', function () {
+    document.getElementById('mobile-menu').classList.toggle('open');
+    let icon = this.querySelector('i');
+    icon.classList.toggle('fa-bars');
+    icon.classList.toggle('fa-xmark');
+});
+
+document.addEventListener('click', function (event) {
+    let btn = event.target.closest('.add-to-cart-btn');
+    if (!btn) return;
+
+    let product = {
+        id      : btn.dataset.id,
+        name    : btn.dataset.name,
+        price   : Number(btn.dataset.price),
+        img     : btn.dataset.img,
+        section : btn.dataset.section
+    };
+
+    addToCart(product);
+
+    let originalHTML = btn.innerHTML;
+    btn.innerHTML = '<i class="fa fa-check"></i> Added!';
+    btn.disabled = true;
+
+    setTimeout(() => {
+        btn.innerHTML  = originalHTML;
+        btn.disabled   = false;
+    }, 1200);
+
+    let mobileBadge = document.getElementById('cart-badge-mobile');
+    if (mobileBadge) {
+        let cart = getCart();
+        let total = cart.reduce((acc, i) => acc + i.qty, 0);
+        mobileBadge.textContent = total;
+        mobileBadge.classList.remove('hidden');
+    }
+});
+</script>
+
+</body>
+</html>

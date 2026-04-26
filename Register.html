@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="output.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@100..900&display=swap" rel="stylesheet">
+    <title>Steps | Streetwear Footwear</title>
+    <style>
+         * { font-family: 'Raleway', sans-serif; }
+
+        #main_bg {
+            background: linear-gradient(120deg, rgba(0,0,0,1) 0%, rgba(33,36,35,1) 50%, rgba(71,71,71,1) 100%);
+            min-height: 100vh;
+        }
+
+        #about {
+            background: linear-gradient(120deg, rgba(0,0,0,1) 0%, rgba(33,36,35,1) 50%, rgba(71,71,71,1) 100%);
+            min-height: 100vh;
+        }
+
+
+        #mobile-menu {
+            display: none;
+        }
+        #mobile-menu.open {
+            display: flex;
+        }
+
+        #right-content img {
+            filter: drop-shadow(0 0 40px rgba(255,255,255,0.15));
+            transition: filter 0.4s ease, transform 0.4s ease;
+        }
+        #right-content img:hover {
+            filter: drop-shadow(0 0 70px rgba(255,255,255,0.3));
+            transform: scale(1.03) rotate(-1deg);
+        }
+
+        .nav-link {
+            position: relative;
+            padding-bottom: 2px;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0;
+            width: 0; height: 1px;
+            background: rgb(0, 0, 0);
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover::after { width: 100%; }
+
+        @media (max-width: 480px) {
+            #right-content img { width: 220px; }
+        }
+    </style>
+</head>
+<body class="bg-gray-100 slide-in-left">
+    <nav class="w-[90%] md:w-[85%] mx-auto px-2 py-5">
+        <div class="flex items-center justify-between">
+
+            <!-- Logo -->
+             <a href="index.html" class="">
+            <div id="logo" class="font-bold text-2xl tracking-[0.6em] cursor-pointer select-none shrink-0">
+                STEPS
+            </div></a>
+
+            <!-- Desktop links -->
+            <ul class="hidden md:flex gap-6 lg:gap-8">
+                <a href="Shop.html"><li class="nav-link text-sm lg:text-base font-semibold cursor-pointer transition duration-300">Shop</li></a>
+                <a href="Contact.html"><li class="nav-link text-sm lg:text-base font-semibold cursor-pointer transition duration-300">Contact</li></a>
+            </ul>
+
+            <!-- Desktop buttons -->
+            <div class="hidden md:flex items-center gap-3">
+                <a href="Login.html" class="">
+                <button class="px-5 py-1.5 text-sm bg-white text-black font-semibold cursor-pointer border border-white hover:bg-black hover:text-white transition duration-300">
+                    Login
+                </button></a>
+
+                <a href="Register.html" class="">
+                <button class="px-5 py-1.5 text-sm bg-white text-black font-semibold cursor-pointer border border-white hover:bg-black hover:text-white transition duration-300">
+                    Register
+                </button></a>
+            </div>
+
+            <!-- Hamburger (mobile) -->
+            <button id="hamburger" class="md:hidden text-2xl focus:outline-none cursor-pointer" aria-label="Toggle menu">
+                <i class="fa fa-bars"></i>
+            </button>
+        </div>
+
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="flex-col items-center gap-4 pt-6 pb-2 md:hidden">
+            <ul class="flex flex-col items-center gap-4 w-full border-t border-white/20 pt-4">
+                <a href="Shop.html"><li class="nav-link text-sm lg:text-base font-semibold cursor-pointer transition duration-300">Shop</li></a>
+                <a href="Contact.html"><li class="nav-link text-sm lg:text-base font-semibold cursor-pointer transition duration-300">Contact</li></a>
+            </ul>
+            <div class="flex gap-4 pt-2">
+                <a href="Login.html" class="">
+                <button class="px-6 py-1.5 text-sm bg-white text-black font-semibold border border-white hover:bg-black hover:text-white transition duration-300">Login</button></a>
+                 <a href="Register.html" class="">
+                <button class="px-6 py-1.5 text-sm bg-white text-black font-semibold border border-white hover:bg-black hover:text-white transition duration-300">Register</button></a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="w-[85%] h-full md:w-[85%] mx-auto py-10">
+        <div class="mx-auto text-center">
+            <h1 class="text-3xl font-bold ">Create my account</h1>
+            <p class="max-w-2xl mx-auto text-lg text-gray-700"><span class="font-bold">Steps</span> gives you an extraordinary access to a world of products, experts and services. Don't wait any longer and create your account to take advantage of these many advantages.</p>
+        </div>
+    </div>
+
+<div class=" w-[90%] md:w-[60%] mx-auto py-10 px-5">
+    
+  
+    <div class="mb-4">
+        <label for="Title" class="text-lg font-semibold block mb-2">Title</label>
+        <select id="Title" required class="w-full border border-gray-300 py-2 px-4 focus:outline-none focus:ring-2 focus:ring-black-500">
+            <option value="" class="text-gray-500">Select a title</option>
+            <option value="Mr">Mr</option>
+            <option value="Mrs">Mrs</option>
+            <option value="Ms">Ms</option>
+        </select>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+        <div>
+            <label for="first_name" class="text-lg font-semibold block mb-2">First name</label>
+            <input type="text" id="first_name" required placeholder="Enter your first name" class="w-full border border-gray-300 py-2 px-4 focus:outline-none focus:ring-2 focus:ring-black-500">
+        </div>
+        <div>
+            <label for="last_name" class="text-lg font-semibold block mb-2">Last name</label>
+            <input type="text" id="last_name" required placeholder="Enter your last name" class="w-full border border-gray-300 py-2 px-4 focus:outline-none focus:ring-2 focus:ring-black-500">
+        </div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+        <div>
+            <label for="Password" class="text-lg font-semibold block mb-2">Password</label>
+            <input type="password" id="Password" required placeholder="Enter your password" class="w-full border border-gray-300 py-2 px-4 focus:outline-none focus:ring-2 focus:ring-black-500">
+        </div>
+        <div>
+            <label for="confirm_Password" class="text-lg font-semibold block mb-2">Confirm Password</label>
+            <input type="password" id="confirm_Password" required placeholder="Confirm your password" class="w-full border border-gray-300 py-2 px-4 focus:outline-none focus:ring-2 focus:ring-black-500">
+        </div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+        <div class="flex items-center">
+            <input type="checkbox" id="terms" class="mr-2 cursor-pointer">
+            <label for="terms" class="text-sm text-gray-600">
+                I agree to the <a href="#" class="text-blue-800 hover:underline">Terms and Conditions</a>
+            </label>
+        </div>
+
+        <div class="text-left md:text-right">
+            <span class="text-sm text-gray-600">
+                Already have an account? <a href="Login.html" class="text-blue-800 hover:underline">Login here</a>
+            </span>
+        </div>
+    </div>
+
+    <div class="flex justify-center">
+        <button id="create-account-btn" class="px-8 py-3 font-semibold rounded-lg hover:bg-black hover:text-white transition duration-300 cursor-pointer">
+            Create an account
+        </button>
+    </div>
+
+</div>
+    </div>
+
+
+
+    <script>
+        const hamburger = document.getElementById('hamburger');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const icon = hamburger.querySelector('i');
+
+        hamburger.addEventListener('click', () => {
+            mobileMenu.classList.toggle('open');
+            icon.classList.toggle('fa-bars');
+            icon.classList.toggle('fa-xmark');
+        });
+        const passwordInput = document.getElementById('Password');
+        const confirmPasswordInput = document.getElementById('confirm_Password');
+        const createAccountBtn = document.getElementById('create-account-btn');
+        
+        function checkPasswordsMatch() {
+            const password = passwordInput.value;
+            const confirmPassword = confirmPasswordInput.value;
+            
+            if (password !== confirmPassword) {
+                confirmPasswordInput.setCustomValidity('Passwords do not match!');
+                confirmPasswordInput.style.borderColor = 'red';
+                return false;
+            } else {
+                confirmPasswordInput.setCustomValidity('');
+                confirmPasswordInput.style.borderColor = '#d1d5db'; 
+                return true;
+            }
+        }
+
+        confirmPasswordInput.addEventListener('input', checkPasswordsMatch);
+        createAccountBtn.addEventListener('click', function(event) {
+            if (!checkPasswordsMatch()) {
+                event.preventDefault();
+                alert('Passwords do not match!');
+            } else if (passwordInput.value === '') {
+                event.preventDefault();
+                alert('Please enter a password');
+            } else {
+                alert('Account created successfully!');
+            }
+        });
+    </script>
+</body>
+</html>
